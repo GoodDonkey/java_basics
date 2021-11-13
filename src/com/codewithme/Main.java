@@ -1,22 +1,16 @@
 package com.codewithme;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 public class Main {
 
     public static void main(String[] args) {
-        // ", ;, ,, 등을 출력하려면 \ 를 사용.
-        String message = "Hello \"World\"";
-        System.out.println(message);
-
-        // c:\Windows\...
-        String message2 = "c:\\windows\\...";
-        System.out.println(message2);
-
-        // \t, \n ...
-        String message3 = "c:\twindows\n...";
-        System.out.println(message3);
-
+        // array: int array인 number를 길이 5로 정의
+        int[] numbers = new int[5];
+        numbers[0] = 1;
+        numbers[1] = 2;
+        System.out.println(Arrays.toString(numbers)); // int[]는 int로 initialize
 
     }
 }
