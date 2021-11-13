@@ -3,9 +3,10 @@ package com.codewithme;
 public class Main {
 
     public static void main(String[] args) {
-//        int x = 10 + 3 * 2;
-        int x = (10 + 3) * 2; // 괄호가 먼저
-        System.out.println(x);
+        // Implicit casting (automatic casting)
+        short x = 1; // 2byte
+        int y = x + 2; //
+        System.out.println(y);
 
     }
 }
