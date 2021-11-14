@@ -1,13 +1,14 @@
 package com.codewithme;
 
-import java.text.NumberFormat;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // formatting
-        // percent
-        String result = NumberFormat.getPercentInstance().format(0.1); // method chaining
-        System.out.println(result);
+        // Reading Input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Age: ");
+        byte age = scanner.nextByte();
+        System.out.println("You are " + age);
     }
 }
