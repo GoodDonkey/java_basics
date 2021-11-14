@@ -1,22 +1,42 @@
 package com.codewithme;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Reading Input
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Name: ");
+        NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
 
-//        String name = scanner.next(); // 하나의 토큰만 받는다.
-//        System.out.println("You are " + name);
+        // 통화. float라고 가정.
+        System.out.print("Principal: ");
+        String principalInput = scanner.next();
+        float principal = Float.parseFloat(principalInput); // 나중에 통화로 바꾼다.
 
-//        String name2 = scanner.nextLine(); // 한 줄 전체를 받는다 (공백포함)
-//        System.out.println("You are " + name2);
+        // 이자율. float 가정.
+        System.out.print("Annual Interest Rate: ");
+        String rateInput = scanner.next();
+        float rate = Float.parseFloat(rateInput);
 
-        String name3 = scanner.nextLine().trim(); // 한 줄 전체를 받는다 (좌우 공백제외)
-        System.out.println("You are " + name3);
+        // float라고  가정.
+        System.out.print("Period (years): ");
+        String paymentsInput = scanner.next();
+        float numberOfPayments = Float.parseFloat(paymentsInput);
+
+        // calculation
+        System.out.print("Monthly payment is: ");
+
+        // float이라고 가정하고 계산한다.
+        double monthlyPaymentCal = (principal * ((rate * Math.pow((1 + rate), numberOfPayments)) / (Math.pow((1 + rate), numberOfPayments) - 1)));
+
+        // currency로 포매팅하여 출력한다.
+        String monthlyPayment = currency.format(monthlyPaymentCal);
+        System.out.println(monthlyPayment);
+
+
+
 
     }
 }
