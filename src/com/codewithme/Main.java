@@ -6,10 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
         // formatting
-        // 포매팅을 위해 factory method를 객체화한다.
-        NumberFormat currency = NumberFormat.getCurrencyInstance();
-        // 이 객체를 사용해 숫자를 포매팅한다.
-        String result = currency.format(1234567.891);
+        // percent
+        NumberFormat percent = NumberFormat.getPercentInstance();
+        String result = percent.format(0.1);
         System.out.println(result);
     }
 }
