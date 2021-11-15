@@ -4,40 +4,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /* 오류
+        /*
+        // 기본값을 Economy로 주고 선언하기까지만 가능. logical statement를 직접 변수에 넣을 수 없다.
         int income = 120_000;
-        if (income > 100_000) {
-            boolean hasHighIncome = true; // if 안에서만 동작
-        }
-        System.out.println(hasHighIncome);
-        */
-
-//        -----------
-
-       /*  1. 미리 선언하면 if 밖에서도 사용할 수 있다.
-        int income = 120_000;
-        boolean hasHighIncome;
+        String className = "Economy";
         if (income > 100_000)
-            hasHighIncome = true;
-        else
-            hasHighIncome = false;
-        System.out.println(hasHighIncome);
+            className = "First";
         */
 
-//        ---------
-
-        /* 2. 변수 기본값을 false로 해두면 else문을 쓰지 않아도 된다.
+        // Ternary Operator를 사용해 boolean 값에 따른 출력값을 지정. -> ?, :
         int income = 120_000;
-        boolean hasHighIncome = false;
-        if (income > 100_000)
-            hasHighIncome = true;
-        System.out.println(hasHighIncome);
-        */
-
-        // 결론: if 문을 쓰자 않아도 된다.
-        int income = 120_000;
-        boolean hasHighIncome = (income > 100_000); // logical statement는 () 로 감싸는 것이 더 읽기 좋다.
-        System.out.println(hasHighIncome);
+        String className = income > 100_000 ? "First" : "Economy";
 
     }
 }
