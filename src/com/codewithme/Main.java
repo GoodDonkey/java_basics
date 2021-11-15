@@ -12,14 +12,11 @@ public class Main {
         while (!input.equals("quit")) {
             System.out.print("Input: ");
             input = scanner.next().toLowerCase(Locale.ROOT);
+            if (input.equals("pass")) // pass를 입력받으면 다음 loop로 진행한다.
+                continue;
+            if (input.equals("quit"))
+                break;
             System.out.println(input);
         }
-
-        // do ~ while : 구문을 최소한 1번은 실행한다. 이후 조건에 따라 반복한다.
-        do {
-            System.out.print("Input: ");
-            input = scanner.next().toLowerCase(Locale.ROOT);
-            System.out.println(input);
-        } while (!input.equals("quit"));
     }
 }
