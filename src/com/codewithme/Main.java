@@ -1,27 +1,36 @@
 package com.codewithme;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        String role = "admin";
+        // 5로 나누어 떨어지면 Fizz
+        // 3으로 나누어 떨어지면 Buzz
+        // 5 또는 3으로 나누어 떨어지면 FizzBuzz
+        // 모두 아니면 숫자 그대로
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Number: ");
 
-        switch (role) {
-            case "admin":
-                System.out.println("You're an admin");
-                break;
-            case "moderator":
-                System.out.println("You're a moderator");
-                break;
-            default:
-                System.out.println("You're a guest");
+        // input
+        String numberInput = scanner.next().trim();
+
+        // initialization
+        int number = Integer.parseInt(numberInput);
+        String printing = numberInput;
+        boolean isDiv5 = false;
+
+        if (number % 5 == 0) {
+            printing = "Fizz";
+            isDiv5 = true;
+        }
+        if (number % 3 == 0) {
+            if (isDiv5) printing = printing.concat("Buzz");
+            else
+                printing = "Buzz";
         }
 
-        // 위 switch문은 아래의 if 문과 같다.
-        if (role == "admin")
-            System.out.println("You're an admin");
-        else if (role == "moderator")
-            System.out.println("You're a moderator");
-        else
-            System.out.println("You're a guest");
+        System.out.println(printing);
+
     }
 }
