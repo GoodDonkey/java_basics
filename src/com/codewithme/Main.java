@@ -14,5 +14,12 @@ public class Main {
             input = scanner.next().toLowerCase(Locale.ROOT);
             System.out.println(input);
         }
+
+        // do ~ while : 구문을 최소한 1번은 실행한다. 이후 조건에 따라 반복한다.
+        do {
+            System.out.print("Input: ");
+            input = scanner.next().toLowerCase(Locale.ROOT);
+            System.out.println(input);
+        } while (!input.equals("quit"));
     }
 }
