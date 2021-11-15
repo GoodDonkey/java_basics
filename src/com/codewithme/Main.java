@@ -3,18 +3,25 @@ package com.codewithme;
 public class Main {
 
     public static void main(String[] args) {
+        String role = "admin";
 
-        /*
-        // 기본값을 Economy로 주고 선언하기까지만 가능. logical statement를 직접 변수에 넣을 수 없다.
-        int income = 120_000;
-        String className = "Economy";
-        if (income > 100_000)
-            className = "First";
-        */
+        switch (role) {
+            case "admin":
+                System.out.println("You're an admin");
+                break;
+            case "moderator":
+                System.out.println("You're a moderator");
+                break;
+            default:
+                System.out.println("You're a guest");
+        }
 
-        // Ternary Operator를 사용해 boolean 값에 따른 출력값을 지정. -> ?, :
-        int income = 120_000;
-        String className = income > 100_000 ? "First" : "Economy";
-
+        // 위 switch문은 아래의 if 문과 같다.
+        if (role == "admin")
+            System.out.println("You're an admin");
+        else if (role == "moderator")
+            System.out.println("You're a moderator");
+        else
+            System.out.println("You're a guest");
     }
 }
