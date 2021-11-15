@@ -1,21 +1,61 @@
 package com.codewithme;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
-        // for ~ each
-        String[] fruits = {"Apple", "Mango", "Orange"};
+        Scanner scanner = new Scanner(System.in);
+        NumberFormat currency = NumberFormat.getCurrencyInstance(Locale.US);
 
-        for (int i = 0; i < fruits.length; i++)
-            System.out.println(fruits[i]);
+        int principal;
+        float interest;
+        int period;
 
-        // enhenced for loop
-        for (String fruit : fruits)
-            System.out.println(fruit);
+        float monthlyInterest;
+        int numberOfPayments;
 
-        // enhenced for loop는 아래와 같이 작아지는 방향으로는 불가능하다.
-        for (int j = fruits.length - 1; j >= 0; j--)
-            System.out.println(fruits[j]);
+        // 통화.
+        while (true) {
+            System.out.print("Principal ($1K - $1M): ");
+            principal = scanner.nextInt();
+            if (principal >= 1000 && principal <= 1000000)
+                break;
+            System.out.println("Enter a number between 1,000 and 1,000,000");
+        }
 
-        // 또한 item의 index를 뽑을 수 없으므로 그럴땐 일반적인 for loop을 사용해야한다.
+        // 이자율.
+        while (true) {
+            System.out.print("Annual Interest Rate: ");
+            interest = scanner.nextFloat();
+            if (interest > 0 && interest <= 30) {
+                monthlyInterest = interest / 100 / 12;
+                break;
+            }
+            System.out.println("Enter a number between 0 and 30");
+        }
+
+        // 기간
+        while (true) {
+            System.out.print("Period (years): ");
+            period = scanner.nextInt();
+            if (period >= 1 && period <= 30) {
+                numberOfPayments = period * 12;
+                break;
+            }
+            System.out.println("Enter a number between 1 and 30");
+        }
+
+        // calculation
+        System.out.print("Monthly payment is: ");
+        double monthlyPaymentCal = (principal *
+                ((monthlyInterest * Math.pow((1 + monthlyInterest), numberOfPayments))
+                        / (Math.pow((1 + monthlyInterest), numberOfPayments) - 1)));
+
+        // currency로 포매팅하여 출력한다.
+        String monthlyPayment = currency.format(monthlyPaymentCal);
+        System.out.println(monthlyPayment);
     }
 }
