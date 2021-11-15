@@ -1,22 +1,21 @@
 package com.codewithme;
 
-import java.util.Locale;
-import java.util.Scanner;
-
 public class Main {
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String input = "";
-        // 받은 숫자를 그대로 프린트하기. quit을 받으면 while문이 끝남.
-        while (true) {
-            System.out.print("Input: ");
-            input = scanner.next().toLowerCase(Locale.ROOT);
-            if (input.equals("pass")) // pass를 입력받으면 다음 loop로 진행한다.
-                continue;
-            if (input.equals("quit"))
-                break;
-            System.out.println(input);
-        }
+        // for ~ each
+        String[] fruits = {"Apple", "Mango", "Orange"};
+
+        for (int i = 0; i < fruits.length; i++)
+            System.out.println(fruits[i]);
+
+        // enhenced for loop
+        for (String fruit : fruits)
+            System.out.println(fruit);
+
+        // enhenced for loop는 아래와 같이 작아지는 방향으로는 불가능하다.
+        for (int j = fruits.length - 1; j >= 0; j--)
+            System.out.println(fruits[j]);
+
+        // 또한 item의 index를 뽑을 수 없으므로 그럴땐 일반적인 for loop을 사용해야한다.
     }
 }
