@@ -16,7 +16,8 @@ public class Employee {
 
     }
 
-    public int getBaseSalary() {
+    // 굳이 밖에서 부를 일이 없는 메소드는 private으로 정의한다.
+    private int getBaseSalary() {
         return baseSalary;
     }
 
@@ -26,7 +27,7 @@ public class Employee {
         this.hourlyRate = hourlyRate;
     }
 
-    public int getHourlyRate() {
+    private int getHourlyRate() {
         return hourlyRate;
     }
 }
