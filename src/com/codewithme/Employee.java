@@ -7,7 +7,12 @@ public class Employee {
     // Constructor
     public Employee(int baseSalary, int hourlyRate) {
         setBaseSalary(baseSalary); // 값 검증을 위해 setter 사용.
-        setHourlyRate(hourlyRate);
+        setHourlyRate(hourlyRate); // HourlyRate가 없는 경우엔 0으로 초기화하도록 한다.
+    }
+
+    // Constructor Overloading
+    public Employee(int baseSalary) {
+        this(baseSalary, 0);
     }
 
     public int calculateWage(int extraHours) {
@@ -32,7 +37,7 @@ public class Employee {
     }
 
     private void setHourlyRate(int hourlyRate) {
-        if (hourlyRate <= 0)
+        if (hourlyRate < 0)
             throw new IllegalArgumentException("Hourly Rate cannot be 0 or less.");
         this.hourlyRate = hourlyRate;
     }
