@@ -3,12 +3,21 @@ package com.codewithme;
 public class Main {
 
     public static void main(String[] args) {
-        var textBox1 = new TextBox();
-        var textBox2 = textBox1; // TextBox 클래스라는 것을 파악함.
-        // 즉, 이 경우 하나의 heap 주소를 두개의 변수가 가리키고 있는 것.
-        // 그러므로 하나의 객체로 값을 바꾸면 다른 하나도 바뀐다.
-        textBox2.setText("Hello World");
-        System.out.println(textBox1.text);
+        // Calculate wage
+        int baseSalary = 50_000;
+        int extraHours = 10;
+        int hourlyRate = 20;
 
+        int wage = calculateWage(baseSalary, extraHours, hourlyRate);
+        System.out.println(wage);
+    }
+
+    public static int calculateWage(
+            // 각 변수를 활용해서 임금을 계산하여 반환한다.
+            int baseSalary,
+            int extraHours,
+            int hourlyRate
+    ) {
+        return baseSalary + (extraHours * hourlyRate);
     }
 }
