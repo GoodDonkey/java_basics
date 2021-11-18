@@ -14,6 +14,11 @@ public class Employee {
         return baseSalary + (hourlyRate * extraHours);
     }
 
+    public int calculateWage() {
+        // method overloading: parameter 없이도 사용할 수 있도록 정의하였음.
+        return calculateWage(0);
+    }
+
     private void setBaseSalary(int baseSalary) {
         if (baseSalary <= 0)
             throw new IllegalArgumentException("Salary cannot be 0 or less."); // java library에 있는 exception을 사용함.
