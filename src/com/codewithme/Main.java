@@ -8,5 +8,4 @@ public class Main {
             control.render(); // everytime an object is iterated, render.
         }
     }
-
 }

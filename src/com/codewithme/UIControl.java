@@ -11,7 +11,7 @@ public abstract class UIControl {
     //UI 객체를 렌더링하는 메서드. 다른 클래스에서 overriding 하여 사용한다.
     public abstract void render();
 
-    public void enable() {
+    public final void enable() {
         isEnabled = true;
     }
 
