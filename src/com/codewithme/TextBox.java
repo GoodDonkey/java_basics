@@ -2,9 +2,16 @@ package com.codewithme;
 
 public class TextBox extends UIControl {
     private String text = "";
-    public TextBox() {
-        super(true);
-        System.out.println("TextBox initialized");
+
+//    public TextBox() {
+//        super(true);
+//        System.out.println("TextBox initialized");
+//    }
+
+
+    @Override
+    public void render() {
+        System.out.println("Render TextBox");
     }
 
     @Override
