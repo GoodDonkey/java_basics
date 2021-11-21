@@ -1,12 +1,15 @@
-package com.ddcodewithme;
-
-import com.codewithme.UIControl;
+package com.codewithme;
 
 public class TextBox extends UIControl {
     private String text = "";
     public TextBox() {
         super(true);
         System.out.println("TextBox");
+    }
+
+    @Override
+    public String toString() {
+        return text;
     }
 
     public void setText(String text) {
