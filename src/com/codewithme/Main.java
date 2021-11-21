@@ -3,22 +3,20 @@ package com.codewithme;
 public class Main {
 
     public static void main(String[] args) {
-        var control = new UIControl(true);
-        var textBox = new TextBox();
-        show(control); // 1. TextBox object is also a UIControl object
+        var point1 = new Point(1, 2);
+        var point2 = new Point(1, 2);
+        System.out.println(point1.equals(point2));
+        System.out.println(point1 == point2);
 
-    }
-    public static void show(UIControl control) {
+        // equals로 Point가 아닌 객체 비교할 경우 오류가 나므로 예외처리를 해둠
+        System.out.println(point1.equals(new TextBox()));
 
-        // 3. downcasting이 불가능한 UIControl 객체라면, setText()메서드를 사용하지 않고 바로 출력한다.
-        if (control instanceof TextBox) {
-            // 2. upcasting 되어 TextBox 객체를 UIControl 타입으로 받을 수 있지만,
-            // 받은 객체에서 TextBox 객체의 메서드를 쓰는 것은 불가능 하다.
-            // 따라서 downcasting을 통해 TextBox의 메서드를 쓸 수 있도록 만들 수 있다.
-            var textBox = (TextBox) control;
-            textBox.setText("Hello World");
-        }
-        System.out.println(control);
+        // 자기 자신을 비교하면 true
+        System.out.println(point1.equals(point1));
+
+        // 같은 인자가 들어가면 같은 hashcode를 갖도록 Override 하였다.
+        System.out.println(point1.hashCode());
+        System.out.println(point2.hashCode());
     }
 
 }
