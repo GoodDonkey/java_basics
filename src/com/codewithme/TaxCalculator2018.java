@@ -1,7 +1,10 @@
 package com.codewithme;
 
-public class TaxCalculator2018 implements TaxCalculator{
-    private double taxableIncome;
+public class TaxCalculator2018
+        extends AbstractTaxCalculator {
+    // AbstractTaxCalculator 에서 이미 interface를 implement하고 있으므로 여기서 굳이 명시할 필요가 없다.
+
+    private final double taxableIncome;
 
     public TaxCalculator2018(double taxableIncome) {
         this.taxableIncome = taxableIncome;
