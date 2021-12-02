@@ -1,9 +1,9 @@
 package com.codewithme;
 
-public class TaxCalculator2021 implements TaxCalculator{
+public class TaxCalculator2018 implements TaxCalculator{
     private double taxableIncome;
 
-    public TaxCalculator2021(double taxableIncome) {
+    public TaxCalculator2018(double taxableIncome) {
         this.taxableIncome = taxableIncome;
     }
 

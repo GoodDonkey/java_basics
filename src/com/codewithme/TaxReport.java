@@ -12,4 +12,8 @@ public class TaxReport {
         System.out.println(tax);
     }
 
+    public void setCalculator(TaxCalculator calculator) {
+        this.calculator = calculator;
+    }
+
 }
