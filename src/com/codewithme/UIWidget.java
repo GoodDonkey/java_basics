@@ -1,7 +1,6 @@
 package com.codewithme;
 
-public interface UIWidget {
-    void drag();
-    void resize(int size);
+public interface UIWidget
+        extends Draggable, Resizable {
     void render();
 }
