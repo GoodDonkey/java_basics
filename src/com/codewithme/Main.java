@@ -3,7 +3,8 @@ package com.codewithme;
 public class Main {
 
     public static void main(String[] args) {
-        // interface 사용하기
+        var calculator = new TaxCalculator2021(100_000);
+        var report = new TaxReport(calculator);
 
     }
 }

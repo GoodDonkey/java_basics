@@ -1,11 +1,10 @@
 package com.codewithme;
 
-// TaxCalculator 클래스를 사용하는 클래스.
 public class TaxReport {
-    private TaxCalculator2021 calculator;
+    private TaxCalculator calculator;
 
-    public TaxReport() {
-        calculator = new TaxCalculator2021(100_000);
+    public TaxReport(TaxCalculator calculator) {
+        this.calculator = calculator;
     }
 
     public void show() {
