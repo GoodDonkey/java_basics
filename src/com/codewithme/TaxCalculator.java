@@ -1,13 +1,6 @@
 package com.codewithme;
 
-public class TaxCalculator {
-    private double taxableIncome;
+public interface TaxCalculator {
+    double calculateTax();
 
-    public TaxCalculator(double taxableIncome) {
-        this.taxableIncome = taxableIncome;
-    }
-
-    public double calculateTax() {
-        return taxableIncome * 0.3;
-    }
 }
