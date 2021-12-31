@@ -1,6 +1,6 @@
 package com.codewithme.generics;
 
-public class List {
+public class List<T> {
     private Object[] items = new Object[10];
     private int  count;
 

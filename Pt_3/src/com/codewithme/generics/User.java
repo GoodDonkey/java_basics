@@ -1,6 +1,6 @@
 package com.codewithme.generics;
 
-public class User implements Comparable<User>, Cloneable {
+public class User implements Comparable<User> {
     private int points;
 
     public User(int points) {
