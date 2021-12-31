@@ -7,9 +7,10 @@ public class ExceptionsDemo {
         var account = new Account();
         try {
             account.withdraw(10);
-        } catch (InsufficientFundsException e) {
-            System.out.println(e.getMessage()); // InsufficientFundsException 에 정의된 메시지를 가져와 프린트한다.
+        } catch (AccountException e) {
+            Throwable cause = e.getCause(); // cause 는 InsufficientFundsException 를 가리킨다.
+            System.out.println(cause.getMessage());
+            e.printStackTrace();
         }
-
     }
 }
