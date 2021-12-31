@@ -1,14 +1,9 @@
-import com.codewithme.exceptions.ExceptionsDemo;
-
-import java.io.IOException;
+import com.codewithme.generics.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            ExceptionsDemo.show();
-        } catch (Throwable e) {
-            System.out.println("An unexpected error occurred.");
-        }
+        var list = new List();
+        list.add(1);
     }
 }
