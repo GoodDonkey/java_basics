@@ -1,10 +1,15 @@
 package com.codewithme.exceptions;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Locale;
 
 public class ExceptionsDemo {
     public static void show() {
-        var reader new FileReader("file.txt");
+        try {
+            var reader = new FileReader("file.txt");
+            System.out.println("File opened");
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage()); // FileNotFoundException에 정의된 에러메시지를 직접 출력한다.
+        }
     }
 }
