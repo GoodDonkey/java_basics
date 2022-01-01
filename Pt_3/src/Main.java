@@ -1,9 +1,8 @@
-import com.codewithme.collections.CollectionsDemo;
-import com.codewithme.generics.GenericList;
+import com.codewithme.collections.ListDemo;
 
 public class Main {
 
     public static void main(String[] args) {
-        CollectionsDemo.show();
+        ListDemo.show();
     }
 }
