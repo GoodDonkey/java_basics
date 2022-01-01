@@ -1,6 +1,5 @@
 package com.codewithme.streams;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class StreamsDemo {
@@ -13,10 +12,12 @@ public class StreamsDemo {
                 new Movie("e", 40)
         );
 
-        // distinct()
+        // peek(Consumer)
         movies.stream()
-              .map(Movie::getLikes)
-              .distinct()
-              .forEach(System.out::println);
+                .filter(m -> m.getLikes() > 10)
+                .peek(m -> System.out.println("filtered: " + m.getTitle()))
+                .map(Movie::getTitle)
+                .peek(title -> System.out.println("mapped: " + title))
+                .forEach(System.out::println);
     }
 }
