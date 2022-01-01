@@ -1,20 +1,18 @@
 package com.codewithme.lambda;
 
 public class LambdasDemo {
-    private String prefix = "-";
+    public static void print(String message) {}
+    public void print2(String message) {}
 
     public void show() {
-        String prefix2 = "!";
+        // static 메서드를 정의하여 lambda 를 method reference 하기
+        greet(message -> print(message));
+        greet(LambdasDemo::print);
 
-        // lambda expression 을 이용한 메서드 정의
-        greet(message -> System.out.println(prefix + message));
-        prefix = "*";
-        greet(message -> System.out.println(prefix + message));
-
-        // 변수에 담을 수도 있다.
-        final Printer printer = message -> System.out.println(prefix2 + message);
-//        prefix2 = "@"; // lambda가 사용하는 지역 변수 prefix2 는 변경되어서는 안됨.
-        greet(printer);
+        // instance method의 경우
+        var demo = new LambdasDemo();
+        greet(message -> demo.print(message));
+        greet(demo::print2);
     }
 
     public void greet(Printer printer) {
