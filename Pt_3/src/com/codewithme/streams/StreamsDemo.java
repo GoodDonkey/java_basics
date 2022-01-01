@@ -13,24 +13,10 @@ public class StreamsDemo {
                 new Movie("e", 40)
         );
 
-        // Comparator 객체를 lambda 로 정의
+        // distinct()
         movies.stream()
-              .sorted((a, b) -> a.getTitle()
-                                 .compareTo(b.getTitle()))
-              .sorted(Comparator.comparing(m -> m.getTitle()))
-              .sorted(Comparator.comparing(Movie::getTitle))
-              .forEach(m -> System.out.println(m.getTitle()));
-
-        // Comparator.comparing() 사용
-        System.out.println("--------");
-        movies.stream()
-              .sorted(Comparator.comparing(Movie::getTitle))
-              .forEach(m -> System.out.println(m.getTitle()));
-
-        // descending sorting
-        System.out.println("--------");
-        movies.stream()
-              .sorted(Comparator.comparing(Movie::getTitle).reversed())
-              .forEach(m -> System.out.println(m.getTitle()));
+              .map(Movie::getLikes)
+              .distinct()
+              .forEach(System.out::println);
     }
 }
