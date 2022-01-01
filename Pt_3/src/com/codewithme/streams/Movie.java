@@ -16,4 +16,10 @@ public class Movie {
     public String getTitle() {
         return title;
     }
+
+    // sorted() 에서 사용하기 위해 정의할 수도 있지만 호출 환경에서 바로 lambda로 정의하면 상관없다.
+//    @Override
+//    public int compareTo(Movie o) {
+//        return 0;
+//    }
 }
