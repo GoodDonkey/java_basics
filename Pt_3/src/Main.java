@@ -1,8 +1,8 @@
-import com.codewithme.collections.QueueDemo;
+import com.codewithme.collections.SetDemo;
 
 public class Main {
 
     public static void main(String[] args) {
-        QueueDemo.show();
+        SetDemo.show();
     }
 }
