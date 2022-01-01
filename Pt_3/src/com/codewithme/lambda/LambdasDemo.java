@@ -1,23 +1,19 @@
 package com.codewithme.lambda;
 
-import java.util.function.Predicate;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 
 public class LambdasDemo {
 
     public static void show() {
-        var testString = "key:value";
+        // binary operator: 2 operands, 1 result
+        var x = 1 + 2;
 
-        Predicate<String> hasLeftBrace = str -> str.startsWith("{");
-        Predicate<String> hasRightBrace = str -> str.endsWith("}");
+        // a, b -> a + b -> square
+        BinaryOperator<Integer> add = (a, b) -> a + b; // 자동 boxing 됨.
+        Function<Integer, Integer> square = a -> a * a;
 
-        Predicate<String> hasLeftAndRightBraces = hasLeftBrace.and(hasRightBrace);
-        System.out.println(hasLeftAndRightBraces.test(testString));
-
-        Predicate<String> or = hasLeftBrace.or(hasRightBrace);
-        System.out.println(or.test(testString));
-
-        Predicate<String> negate = hasLeftBrace.negate();
-        System.out.println(negate.test(testString));
-
+        var result = add.andThen(square).apply(1, 2);
+        System.out.println(result);
     }
 }
