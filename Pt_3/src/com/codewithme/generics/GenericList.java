@@ -16,6 +16,26 @@ public class GenericList<T> implements Iterable<T>{
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new ListIterator(this);
+    }
+
+    /* 위의 generic type T를 사용하여 inner class를 정의한다. */
+    private class ListIterator implements Iterator<T> {
+        private GenericList<T> list;
+        private int index;
+
+        public ListIterator(GenericList<T> list) {
+            this.list = list;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return (index < list.count);
+        }
+
+        @Override
+        public T next() {
+            return list.items[index++];
+        }
     }
 }
