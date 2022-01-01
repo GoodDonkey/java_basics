@@ -1,7 +1,8 @@
 package com.codewithme.streams;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class StreamsDemo {
     public static void show() {
@@ -13,28 +14,58 @@ public class StreamsDemo {
                 new Movie("e", 40)
         );
 
-        // [10, 20, 30, 20, 40]
-        // [30, 30, 20, 40]
-        // [60, 20, 40]
-        // [80, 40]
-        // [120]
-        // reduce(BinaryOperator)
-        Optional<Integer> sum = movies.stream()
-                                      .map(m -> m.getLikes())
-                                      .reduce((a, b) -> a + b);
-        System.out.println(sum.orElse(0));
+        // Collectors.toList(), toSet()... 을 사용할 수 있다.
+        List<Movie> result = movies.stream()
+                                   .filter(m -> m.getLikes() > 10)
+                                   .collect(Collectors.toList());
 
-        // method reference로 표현
-        Optional<Integer> sum2 = movies.stream()
-                                       .map(Movie::getLikes)
-                                       .reduce(Integer::sum);
-        System.out.println(sum2.orElse(0));
+        Set<Movie> result2 = movies.stream()
+                                   .filter(m -> m.getLikes() > 10)
+                                   .collect(Collectors.toSet());
 
-        // reduce(T, BinaryOperator): 첫 값을 지정해 줄 수 있다. T 타입의 값을 반환하게 된다.
-        // 만약 stream의 원소가 없다면 첫 값을 그대로 반환하게 된다.
-        Integer sum3 = movies.stream()
-                             .map(Movie::getLikes)
-                             .reduce(0, Integer::sum);
-        System.out.println(sum3);
+        // title: likes 인 Map
+        // toMap(keyMapper, valueMapper)
+        Map<String, Integer> result3 = movies.stream()
+                                             .filter(m -> m.getLikes() > 10)
+                                             .collect(Collectors.toMap(Movie::getTitle, Movie::getLikes));
+
+        // value 로 Movie 객체를 담고 싶다면
+        Map<String, Movie> result4 = movies.stream()
+                                           .filter(m -> m.getLikes() > 10)
+                                           .collect(Collectors.toMap(Movie::getTitle, m -> m));
+
+        // Function.identity(): 객체를 받아서 그대로 반환하는 메서드. 위와 같은 표현.
+        Map<String, Movie> result5 = movies.stream()
+                                           .filter(m -> m.getLikes() > 10)
+                                           .collect(Collectors.toMap(Movie::getTitle, Function.identity()));
+
+        // Collectors.summingInt(ToIntFunction): mapper 함수를 이용해 int를 반환하는 Collector 객체 반환
+        // summingDouble, summingLong 등도 있다.
+        Integer result6 = movies.stream()
+                                .filter(m -> m.getLikes() > 10)
+                                .collect(Collectors.summingInt(Movie::getLikes));
+
+        // Collectors.summarizingInt(ToIntFunction): mapper 함수를 이용해 요약통계치를 가진 객체를 반환하는 Collector객체 반환.
+        // summarizingDouble, summarizingLong 도 있다.
+        IntSummaryStatistics result7 = movies.stream()
+                                             .filter(m -> m.getLikes() > 10)
+                                             .collect(Collectors.summarizingInt(Movie::getLikes));
+
+        System.out.println(result); // Movie 객체가 담겨있다
+        System.out.println(result2); // Movie 객체가 담겨있다
+        System.out.println(result3); // key value 로 담겨있다
+        System.out.println(result4);
+        System.out.println(result5);
+        System.out.println(result6);
+        System.out.println(result7);
+
+        // Collectors.joining(): String 을 합쳐서 반환하는 Collector 객체 반환. delimiter 줄 수 있다.
+        String result8 = movies.stream()
+                               .filter(m -> m.getLikes() > 10)
+                               .map(Movie::getTitle)
+                               .collect(Collectors.joining(","));
+        System.out.println(result8);
+
+
     }
 }
