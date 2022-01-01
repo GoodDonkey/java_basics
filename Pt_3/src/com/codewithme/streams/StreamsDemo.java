@@ -1,12 +1,21 @@
 package com.codewithme.streams;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class StreamsDemo {
     public static void show() {
-        var stream = Stream.of(List.of(1, 2, 3), List.of(4, 5, 6));
-        stream.flatMap(list -> list.stream()) // list의 stream객체를 반환하도록 정의하면, 개별 원소를 가지는 stream이 된다.
-              .forEach(n -> System.out.println(n));
+        var movies = List.of(
+                new Movie("a", 10),
+                new Movie("b", 20),
+                new Movie("c", 30)
+        );
+
+        Predicate<Movie> isPopular = m -> m.getLikes() > 10;
+        movies.stream()
+              .filter(isPopular)
+              .peek(m -> System.out.println(m.getLikes()))
+              .forEach(m -> System.out.println(m.getTitle()));
     }
 }
