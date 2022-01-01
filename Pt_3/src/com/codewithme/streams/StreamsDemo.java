@@ -1,6 +1,5 @@
 package com.codewithme.streams;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,46 +13,28 @@ public class StreamsDemo {
                 new Movie("e", 40)
         );
 
-        // long count(): 개수
-        var count = movies.stream()
-                          .filter(m -> m.getLikes() >= 30)
-                          .count();
-        System.out.println(count);
+        // [10, 20, 30, 20, 40]
+        // [30, 30, 20, 40]
+        // [60, 20, 40]
+        // [80, 40]
+        // [120]
+        // reduce(BinaryOperator)
+        Optional<Integer> sum = movies.stream()
+                                      .map(m -> m.getLikes())
+                                      .reduce((a, b) -> a + b);
+        System.out.println(sum.orElse(0));
 
-        // boolean anyMatch(): 조건을 만족하는 원소가 있는가?
-        var anyMatch = movies.stream()
-                             .anyMatch(m -> m.getLikes() > 20);
-        System.out.println(anyMatch);
+        // method reference로 표현
+        Optional<Integer> sum2 = movies.stream()
+                                       .map(Movie::getLikes)
+                                       .reduce(Integer::sum);
+        System.out.println(sum2.orElse(0));
 
-        // boolean allMatch(): 모든 원소가 조건을 만족하는가?
-        var allMatch = movies.stream()
-                             .allMatch(m -> m.getLikes() > 20);
-        System.out.println(allMatch);
-
-        // noneMatch(): 모두 만족하지 않는가?
-        var noneMatch = movies.stream()
-                              .noneMatch(m -> m.getLikes() > 50);
-        System.out.println(noneMatch);
-
-        // findFirst(): 첫번째 객체를 반환. Optional wrapper 로 감싸서
-        var findFirst = movies.stream()
-                              .findFirst();
-        System.out.println(findFirst.get()
-                                    .getTitle());
-
-        // findAny()
-        var findAny = movies.stream()
-                            .findAny();
-        System.out.println(findAny.get()
-                                  .getTitle());
-
-        // max(): comparator 에 정의된 기준으로 가장 큰 값을 가진 객체를 반환
-        var max = movies.stream()
-                        .max(Comparator.comparing(Movie::getLikes));
-        System.out.println(max.get()
-                              .getTitle() + " has likes of " + max.get()
-                                                                  .getLikes());
-
-
+        // reduce(T, BinaryOperator): 첫 값을 지정해 줄 수 있다. T 타입의 값을 반환하게 된다.
+        // 만약 stream의 원소가 없다면 첫 값을 그대로 반환하게 된다.
+        Integer sum3 = movies.stream()
+                             .map(Movie::getLikes)
+                             .reduce(0, Integer::sum);
+        System.out.println(sum3);
     }
 }
