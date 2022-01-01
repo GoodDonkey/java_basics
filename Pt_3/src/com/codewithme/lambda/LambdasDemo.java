@@ -1,19 +1,15 @@
 package com.codewithme.lambda;
 
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 public class LambdasDemo {
 
     public static void show() {
-        // binary operator: 2 operands, 1 result
-        var x = 1 + 2;
+        UnaryOperator<Integer> square = n -> n * n;
+        UnaryOperator<Integer> increment = n -> n + 1;
 
-        // a, b -> a + b -> square
-        BinaryOperator<Integer> add = (a, b) -> a + b; // 자동 boxing 됨.
-        Function<Integer, Integer> square = a -> a * a;
-
-        var result = add.andThen(square).apply(1, 2);
+        var result = increment.andThen(square)
+                              .apply(1);
         System.out.println(result);
     }
 }
