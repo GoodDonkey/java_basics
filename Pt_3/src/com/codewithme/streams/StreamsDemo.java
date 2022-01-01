@@ -1,21 +1,23 @@
 package com.codewithme.streams;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 public class StreamsDemo {
     public static void show() {
-        // arbitrary number of objects
-        Stream.of(1, 2, 3, 4);
+        var movies = List.of(
+            new Movie("a", 10),
+            new Movie("b", 20),
+            new Movie("c", 30)
+        );
 
-        // generate() 메서드
-        // Supplier 이용: call 할때마다 랜덤 숫자가 나옴.
-        var stream = Stream.generate(() -> Math.random());
-        stream.limit(3)
-              .forEach(n -> System.out.println(n));
+        // Movie의 제목만 얻고 싶다.
+        movies.stream() // Movie 객체를 가져온다.
+              .map(movie -> movie.getTitle()) // Movie 객체의 title 값을 가져온다.
+              .forEach(name -> System.out.println(name)); // title 을 프린트 한다.
 
-        // iterate() 메서드
-        Stream.iterate(1, n -> n + 1)
-              .limit(10)
-              .forEach(n -> System.out.println(n));
+        // mapToInt: 반환타입이 int
+        movies.stream()
+              .mapToInt(movie -> movie.getLikes())
+              .forEach(likes -> System.out.println(likes));
     }
 }
