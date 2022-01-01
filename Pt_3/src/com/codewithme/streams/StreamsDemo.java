@@ -1,24 +1,24 @@
 package com.codewithme.streams;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 public class StreamsDemo {
     public static void show() {
-        List<Movie> movies = List.of(
-                new Movie("a", 10),
-                new Movie("b", 15),
-                new Movie("c", 20)
-        );
+        // Collection 은 stream을 사용할 수 있다.
+        Collection<Integer> x = null;
+//        x.stream();
 
-        // Imperative Programming
-        int count = 0;
-        for (var movie : movies)
-            if (movie.getLikes() > 10)
-                count++;
+        // List 를 정의하면 stream을 사용할 수 있다.
+        var list = new ArrayList<>();
+//        list.stream();
 
-        // Declarative (Functional) Programming
-        var count2 = movies.stream()
-                           .filter(movie -> movie.getLikes() > 10)
-                           .count();
+        // array 자체는 stream 메서드가 없다.
+        // 대신 Arrays 클래스를 이용한다.
+        int[] numbers = {1, 2, 3};
+//        numbers.stream();
+        Arrays.stream(numbers)
+                .forEach(n -> System.out.println(n));
     }
 }

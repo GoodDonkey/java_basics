@@ -1,8 +1,8 @@
-import com.codewithme.lambda.LambdasDemo;
+import com.codewithme.streams.StreamsDemo;
 
 public class Main {
 
     public static void main(String[] args) {
-        LambdasDemo.show();
+        StreamsDemo.show();
     }
 }
