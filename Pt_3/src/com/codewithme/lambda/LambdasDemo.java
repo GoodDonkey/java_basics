@@ -1,21 +1,16 @@
 package com.codewithme.lambda;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.function.Consumer;
+
 public class LambdasDemo {
-    public LambdasDemo(String message) {
-        System.out.println(message + " in constructor");
-    }
 
-    public static void print2(String message) {
-        System.out.println(message);
-    }
+    public static void show() {
+        List<String> list = List.of("a", "b", "c");
+        Consumer<String> print = item -> System.out.println(item);
+        Consumer<String> printUpperCase = item -> System.out.println(item.toUpperCase(Locale.ROOT));
 
-    public void show() {
-        greet(message -> new LambdasDemo(message));
-        greet(LambdasDemo::new); // Printer 객체 = print() 메서드 구현 = LambdasDemo 생성자
-        greet(LambdasDemo::print2); // Printer 객체 = print() 메서드 구현 = print2() 메서드
-    }
-
-    public void greet(Printer printer) {
-        printer.print("Hello World");
+        list.forEach(print.andThen(printUpperCase).andThen(print)); // print 함수 실행 후 printUpperCase 실행한다.
     }
 }
