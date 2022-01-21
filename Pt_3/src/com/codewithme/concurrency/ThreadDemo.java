@@ -1,19 +1,29 @@
 package com.codewithme.concurrency;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ThreadDemo {
 
     public static void show() {
-        Thread thread = new Thread(new DownloadFileTask());
-        thread.start();
+        var status = new DownloadStatus();
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        List<Thread> threads = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            var thread = new Thread(new DownloadFileTask(status)); // 모든 쓰레드가 status 를 공유한다.
+            thread.start();
+            threads.add(thread);
         }
 
-        thread.interrupt(); // 직접 쓰레드를 멈출 수는 없다.
+        // 모든 다운로드가 끝날 때까지 기다린다.
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-
+        System.out.println(status.getTotalBytes());
     }
 }
