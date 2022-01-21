@@ -4,7 +4,7 @@ public class DownloadFileTask implements Runnable {
 
     private DownloadStatus status;
 
-    public DownloadFileTask() {
+    public DownloadFileTask(DownloadStatus status) {
 
         this.status = new DownloadStatus();
     }
@@ -13,14 +13,15 @@ public class DownloadFileTask implements Runnable {
     public void run() {
         String currentThread = Thread.currentThread()
                                      .getName();
-        System.out.println("Downloading a file" + currentThread);
+        System.out.println("Downloading a file: " + currentThread);
 
         for (var i = 0; i < 10_000; i++) {
-            if (Thread.currentThread()
-                      .isInterrupted()) return;
-            System.out.println("Downloading byte :" + i + ": " + currentThread);
+            if (Thread.currentThread().isInterrupted()) return;
+//            System.out.println("Downloading byte :" + i + ": " + currentThread);
             status.incrementTotalBytes();
         }
+
+        status.done();
 
         System.out.println("Download complete: " + currentThread);
     }
