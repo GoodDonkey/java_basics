@@ -4,10 +4,10 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class DownloadStatus {
+    private boolean isDone;
     private int totalBytes;
     private int totalFiles;
     private final Object totalBytesLock = new Object(); // moniter object
-    private final Object totalFilesLock = new Object();
 
 
     public int getTotalBytes() {
@@ -20,13 +20,20 @@ public class DownloadStatus {
         }
     }
 
-    public void incrementTotalFiles() {
-        synchronized (totalFilesLock) {
-            totalFiles++;
-        }
+    public synchronized void incrementTotalFiles() {
+        totalFiles++;
     }
 
     public int getTotalFiles() {
         return totalFiles;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void done() {
+        isDone = true;
+        System.out.println("task done:  -> " + this.hashCode());
     }
 }
