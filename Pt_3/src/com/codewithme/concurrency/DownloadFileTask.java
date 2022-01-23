@@ -6,7 +6,7 @@ public class DownloadFileTask implements Runnable {
 
     public DownloadFileTask(DownloadStatus status) {
 
-        this.status = new DownloadStatus();
+        this.status = status;
     }
 
     @Override
@@ -17,11 +17,13 @@ public class DownloadFileTask implements Runnable {
 
         for (var i = 0; i < 10_000; i++) {
             if (Thread.currentThread().isInterrupted()) return;
-//            System.out.println("Downloading byte :" + i + ": " + currentThread);
             status.incrementTotalBytes();
         }
 
         status.done();
+        synchronized (status) {
+            status.notifyAll();
+        }
 
         System.out.println("Download complete: " + currentThread);
     }

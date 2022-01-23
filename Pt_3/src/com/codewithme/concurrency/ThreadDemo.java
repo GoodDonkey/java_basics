@@ -1,8 +1,5 @@
 package com.codewithme.concurrency;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ThreadDemo {
 
     public static void show() {
@@ -13,7 +10,13 @@ public class ThreadDemo {
 
             // isDone 이 true 가 될떄까지 기다린다.
             while (!status.isDone()) {
-//                System.out.println(); // 프린트하면 어쨋든 메모리에 접근해서 status 값을 업데이트한다???
+                synchronized (status) {
+                    try {
+                        status.wait(); // 다른 쓰레드가 깨울 때까지(notify) sleep(while문을 돌지 않음)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             // status 의 결과를 찍는다.

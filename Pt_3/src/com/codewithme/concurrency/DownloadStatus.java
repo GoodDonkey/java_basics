@@ -1,10 +1,7 @@
 package com.codewithme.concurrency;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 public class DownloadStatus {
-    private boolean isDone;
+    private volatile boolean isDone;
     private int totalBytes;
     private int totalFiles;
     private final Object totalBytesLock = new Object(); // moniter object
