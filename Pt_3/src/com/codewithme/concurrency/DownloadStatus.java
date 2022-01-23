@@ -1,19 +1,20 @@
 package com.codewithme.concurrency;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.LongAdder;
 
 public class DownloadStatus {
     private volatile boolean isDone;
-    private AtomicInteger totalBytes = new AtomicInteger();
+    private LongAdder totalBytes = new LongAdder(); // LongAdder, DoubleAdder...
     private int totalFiles;
 
 
     public int getTotalBytes() {
-        return totalBytes.get();
+        return totalBytes.intValue(); // 쓰레드별 cell 값들을 sum() 하여 반환한다.
     }
 
     public void incrementTotalBytes() {
-        totalBytes.incrementAndGet(); // ++a 와 같지만 증가만 목적이므로 뭐든 괜찮.
+        totalBytes.increment();
     }
 
     public synchronized void incrementTotalFiles() {
